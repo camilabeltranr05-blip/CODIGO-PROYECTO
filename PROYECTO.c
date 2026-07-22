@@ -1,132 +1,182 @@
 #include <stdio.h>
 #include <string.h>
 
-// Definición de estructura para almacenar las características de cada personaje
+// Definicion de estructura para almacenar las caracteristicas de cada personaje
 typedef struct {
     char nombre[30];
-    int cabello_oscuro;   // 1: Sí, 0: No (Rubio/Claro)
-    int cabello_largo;    // 1: Largo, 0: Corto
-    int piel_clara;       // 1: Clara, 0: Morena/Oscura
-    int alta;             // 1: Alta, 0: Baja/Media
-    int extrovertida;     // 1: Extrovertida/Energética, 0: Tranquila/Seria
-    int facilidad_exponer;// 1: Se le facilita, 0: Le cuesta
-    int se_maquilla;      // 1: Sí, 0: No
-    int estilo_formal;    // 1: Formal/Elegante, 0: Casual/Informal
+    int cabello_oscuro;      // 1: Oscuro, 0: Claro/Rubio/Rojo
+    int cabello_largo;       // 1: Largo, 0: Corto
+    int cabello_rizado;      // 1: Rizado/Ondulado, 0: Lacio
+    int piel_clara;          // 1: Clara (Solo Alison y Wili), 0: Morena/Trigueña
+    int usa_gafas;           // 1: Si, 0: No
+    int usa_flequillo;       // 1: Si (Capul/Fleco), 0: No
+    int es_alta;             // 1: Alta/o, 0: Baja/o o estatura pequeña
+    int genero_femenino;     // 1: Mujer, 0: Hombre
 } Personaje;
 
-// Funciones de preguntas por característica (Devuelven 1 o 0 según la respuesta del usuario)
+// Funciones de preguntas por caracteristica
 int preguntar_cabello_oscuro() {
     char respuesta;
-    printf("¿El personaje tiene el cabello oscuro/negro/castaño oscuro? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje tiene el cabello oscuro/negro/castano? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
 int preguntar_cabello_largo() {
     char respuesta;
-    printf("¿El personaje tiene el cabello largo? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje tiene el cabello largo? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
+    return (respuesta == 's' || respuesta == 'S');
+}
+
+int preguntar_cabello_rizado() {
+    char respuesta;
+    do {
+        printf("El personaje tiene el cabello rizado u ondulado? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
 int preguntar_piel_clara() {
     char respuesta;
-    printf("¿El personaje tiene tez clara? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje tiene la piel de tez clara? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
-int preguntar_altura() {
+int preguntar_usa_gafas() {
     char respuesta;
-    printf("¿El personaje es considerado alto/a (o de estatura alta)? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje usa gafas o lentes? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
-int preguntar_personalidad() {
+int preguntar_usa_flequillo() {
     char respuesta;
-    printf("¿El personaje tiene una personalidad muy extrovertida y energica? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje tiene flequillo cubriendo la frente? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
-int preguntar_facilidad_exponer() {
+int preguntar_es_alta() {
     char respuesta;
-    printf("¿Tiene facilidad para hablar en público o exponer? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje es alto/a de estatura? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
-int preguntar_se_maquilla() {
+int preguntar_genero_femenino() {
     char respuesta;
-    printf("¿El personaje suele maquillarse con frecuencia? (s/n): ");
-    scanf(" %c", &respuesta);
+    do {
+        printf("El personaje es de genero femenino / mujer? (s/n): ");
+        scanf(" %c", &respuesta);
+        if (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N') {
+            printf("\n ERROR EN LA RESPUESTA INGRESADA, VUELTA A INTENTAR\n");
+        }
+    } while (respuesta != 's' && respuesta != 'n' && respuesta != 'S' && respuesta != 'N');
     return (respuesta == 's' || respuesta == 'S');
 }
 
-int preguntar_estilo_vestir() {
-    char respuesta;
-    printf("¿Su estilo al vestir tiende a ser formal o elegante? (s/n): ");
-    scanf(" %c", &respuesta);
-    return (respuesta == 's' || respuesta == 'S');
-}
-
-// Función principal del juego
+// Funcion principal del juego
 int main() {
-    // Definimos la base de datos con 9 personajes femeninos y sus atributos
+    // Base de datos de personajes actualizados
     Personaje personajes[9] = {
-        {"Sofia",     1, 1, 1, 0, 1, 1, 1, 1}, // Cabello oscuro, largo, piel clara, baja, extrovertida, facilidad exponer, se maquilla, formal
-        {"Valentina", 0, 1, 1, 1, 1, 1, 0, 0}, // Cabello claro, largo, piel clara, alta, extrovertida, facilidad exponer, no se maquilla, casual
-        {"Camila",    1, 0, 0, 0, 0, 0, 1, 0}, // Cabello oscuro, corto, piel morena, baja, tranquila, le cuesta exponer, se maquilla, casual
-        {"Lucia",     0, 0, 1, 0, 0, 0, 0, 0}, // Cabello claro, corto, piel clara, baja, tranquila, le cuesta exponer, no se maquilla, casual
-        {"Mariana",   1, 1, 0, 1, 1, 1, 1, 1}, // Cabello oscuro, largo, piel morena, alta, extrovertida, facilidad exponer, se maquilla, formal
-        {"Elena",     0, 1, 1, 1, 0, 0, 1, 1}, // Cabello claro, largo, piel clara, alta, tranquila, le cuesta exponer, se maquilla, formal
-        {"Carla",     1, 0, 1, 1, 1, 0, 0, 0}, // Cabello oscuro, corto, piel clara, alta, extrovertida, le cuesta exponer, no se maquilla, casual
-        {"Daniela",   0, 0, 0, 0, 1, 1, 1, 0}, // Cabello claro, corto, piel morena, baja, extrovertida, facilidad exponer, se maquilla, casual
-        {"Gabriela",  1, 1, 0, 1, 0, 1, 0, 1}  // Cabello oscuro, largo, piel morena, alta, tranquila, facilidad exponer, no se maquilla, formal
+        {"Jhoan",      1, 0, 0, 0, 0, 1, 1, 0},
+        {"Abraham",    1, 0, 1, 0, 0, 0, 1, 0},
+        {"Wili",       1, 0, 0, 1, 1, 1, 1, 0},
+        {"Alison",     1, 1, 1, 1, 0, 0, 1, 1},
+        {"Lissette",   1, 1, 0, 0, 0, 0, 0, 1},
+        {"Camila",     1, 1, 0, 0, 0, 0, 1, 1},
+        {"Personaje7",  0, 0, 0, 0, 0, 0, 0, 0},
+        {"Personaje8",  0, 0, 0, 0, 0, 0, 0, 0},
+        {"Personaje9",  0, 0, 0, 0, 0, 0, 0, 0}
     };
 
-    printf("=========================================\n");
-    printf("   ¡BIENVENIDO AL AKINATOR DE MUJERES!   \n");
-    printf("=========================================\n");
-    printf("Piensa en uno de estos 9 personajes:\n");
-    printf("Sofia, Valentina, Camila, Lucia, Mariana, Elena, Carla, Daniela, Gabriela.\n\n");
-    printf("Responde con 's' para Si o 'n' para No.\n-----------------------------------------\n\n");
+    printf("+-----------------------------------------+\n");
+    printf("|     BIENVENIDO AL AKINATOR DE AMIGOS    |\n");
+    printf("+-----------------------------------------+\n\n");
+    printf("Piensa en uno de estos personajes:\n");
+    printf("  - Jhoan        - Abraham      - Wili\n");
+    printf("  - Alison       - Lissette     - Camila\n");
+    printf("  - Personaje7   - Personaje8   - Personaje9\n\n");
+    printf("-------------------------------------------\n");
+    printf(" Responde cada pregunta con 's' (Si) o 'n' (No)\n");
+    printf("-------------------------------------------\n\n");
 
-    // Recopilamos las respuestas del usuario llamando a cada función de característica
-    int resp_cabello_oscuro = preguntar_cabello_oscuro();
-    int resp_cabello_largo  = preguntar_cabello_largo();
-    int resp_piel_clara     = preguntar_piel_clara();
-    int resp_altura         = preguntar_altura();
-    int resp_personalidad   = preguntar_personalidad();
-    int resp_facilidad      = preguntar_facilidad_exponer();
-    int resp_maquillaje     = preguntar_se_maquilla();
-    int resp_estilo         = preguntar_estilo_vestir();
+    // Recopilamos las respuestas del usuario
+    int resp_cabello_oscuro     = preguntar_cabello_oscuro();
+    int resp_cabello_largo      = preguntar_cabello_largo();
+    int resp_cabello_rizado     = preguntar_cabello_rizado();
+    int resp_piel_clara         = preguntar_piel_clara();
+    int resp_usa_gafas          = preguntar_usa_gafas();
+    int resp_usa_flequillo      = preguntar_usa_flequillo();
+    int resp_es_alta            = preguntar_es_alta();
+    int resp_genero_femenino    = preguntar_genero_femenino();
 
-    // Buscamos el personaje que coincida exactamente con las respuestas
+    // Buscamos coincidencia exacta
     int encontrado = -1;
     for (int i = 0; i < 9; i++) {
-        if (personajes[i].cabello_oscuro == resp_cabello_oscuro &&
-            personajes[i].cabello_largo == resp_cabello_largo &&
-            personajes[i].piel_clara == resp_piel_clara &&
-            personajes[i].alta == resp_altura &&
-            personajes[i].extrovertida == resp_personalidad &&
-            personajes[i].facilidad_exponer == resp_facilidad &&
-            personajes[i].se_maquilla == resp_maquillaje &&
-            personajes[i].estilo_formal == resp_estilo) {
+        if (personajes[i].cabello_oscuro      == resp_cabello_oscuro     &&
+            personajes[i].cabello_largo       == resp_cabello_largo      &&
+            personajes[i].cabello_rizado      == resp_cabello_rizado     &&
+            personajes[i].piel_clara          == resp_piel_clara         &&
+            personajes[i].usa_gafas           == resp_usa_gafas          &&
+            personajes[i].usa_flequillo       == resp_usa_flequillo      &&
+            personajes[i].es_alta             == resp_es_alta            &&
+            personajes[i].genero_femenino     == resp_genero_femenino) {
             encontrado = i;
             break;
         }
     }
 
-    // Mostramos el resultado del juego
-    printf("\n-----------------------------------------\n");
+    // Mostramos el resultado
+    printf("\n-------------------------------------------\n");
     if (encontrado != -1) {
-        printf("¡Akinator ha pensado... Tu personaje es: **%s**!\n", personajes[encontrado].nombre);
+        printf(" Akinator ha pensado...\n");
+        printf(" Tu personaje es: %s\n", personajes[encontrado].nombre);
     } else {
-        printf("¡Mmm! No pude adivinar el personaje exacto con las combinaciones proporcionadas. ¿Quizas hubo un error en las respuestas?\n");
+        printf(" No pude adivinar el personaje exacto con\n");
+        printf(" las combinaciones proporcionadas.\n");
+        printf(" Quizas hubo un error en las respuestas?\n");
     }
-    printf("=========================================\n");
+    printf("-------------------------------------------\n");
+    printf("+-----------------------------------------+\n");
+    printf("|               FIN DEL PROGRAMA          |\n");
+    printf("+-----------------------------------------+\n");
 
     return 0;
 }
